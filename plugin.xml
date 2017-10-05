@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"  
+    id="com.apptracker.phonegap.android"  
+    version="0.0.1">  
+    <name>ApptrackerPluginAndroid</name>  
+    <description>ApptrackerPlugin</description>  
+    <author>www.leadbolt.com</author>  
+    <license>Apache 2.0 License</license>  
+    <engines>  
+        <engine name="cordova" version=">=3.0.0" />  
+    </engines>  
+    <js-module src="www/AppTracker.js" name="AppTracker">  
+        <clobbers target="AppTracker" />  
+    </js-module>  
+    <platform name="android">
+        <source-file src="src/android/AppTrackerPlugin.java" target-dir="src/com/apptracker/android/phonegap"/>
+        <!--  <source-file src="src/android/AppTrackerPhonegap.jar" target-dir="libs" />  -->
+        <source-file src="src/android/AppTracker.jar" target-dir="libs" />
+        <config-file target="res/xml/config.xml" parent="/*">  
+            <feature name="AppTracker">  
+                <param name="android-package" value="com.apptracker.android.phonegap.AppTrackerPlugin"/>  
+            </feature>  
+        </config-file>  
+        <config-file target="AndroidManifest.xml" parent="/*">      
+			<uses-permission android:name="android.permission.INTERNET"/>
+			<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+        </config-file>
+        <config-file target="AndroidManifest.xml" parent="/manifest/application">
+			<activity android:configChanges="keyboard|keyboardHidden|orientation|screenSize" android:name="com.apptracker.android.module.AppModuleActivity" android:theme="@android:style/Theme.Translucent" android:hardwareAccelerated ="false"></activity>
+		</config-file>
+    </platform>  
+</plugin>  
